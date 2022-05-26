@@ -15,15 +15,59 @@ class UserController {
         res.render('register-form', { error, data })
     }
 
+    static registerFormAdmin(req, res) {
+
+        let { error } = req.query
+        let data = ""
+        res.render('register-form', { error, data })
+    }
+
     static generateName(req, res) {
         const username1 = UsernameGenerator.generateUsername();
         // res.redirect(`register-form?username1=${username1}`)
         let data = username1
         let { error } = req.query
-        res.render('register-form', { error, data })
+        res.render('register-form-admin', { error, data })
     }
 
     static postRegister(req, res) {
+
+        let { name, username, password, phone, gender, role } = req.body
+        //{"name":"Andi","username":"Andi12","password":"Password123","phone":"081388238","gender":"Male","role":"User"}
+        User.create({ username, password, role })
+            .then(user => {
+                return User.findAll(
+                    {
+                        order: [['id', 'DESC']]
+                    },
+                    {
+                        where: {
+                            username: user.username
+                        }
+                    }
+
+                )
+            })
+            .then(user => {
+                let UserId = +user[0].id
+                Profile.create({ name, phone, gender, UserId })
+            })
+            .then(user => {
+                res.redirect('/login')
+            })
+            .catch(err => {
+                let error = ""
+                if (err.name === "SequelizeValidationError") {
+                    error = err.errors[0].message
+                }
+                return res.redirect(`/register?error=${error}`)
+            })
+
+        // error = 'Please enter valid Username / Password'
+        //             return res.redirect(`/login?error=${error}`)
+    }
+
+    static postRegisterAdmin(req, res) {
 
         let { name, username, password, phone, gender, role } = req.body
         //{"name":"Andi","username":"Andi12","password":"Password123","phone":"081388238","gender":"Male","role":"User"}

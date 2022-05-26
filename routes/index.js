@@ -14,6 +14,10 @@ router.get('/register', UserController.registerForm)
 
 router.post('/register', UserController.postRegister)
 
+router.get('/register/admin', UserController.registerFormAdmin)
+
+router.post('/register/admin', UserController.postRegisterAdmin)
+
 router.get('/generateUsername', UserController.generateName)
 
 
@@ -24,6 +28,7 @@ router.get('/login', UserController.loginForm)
 router.post('/login', UserController.postLogin)
 
 // login admin
+
 
 
 
