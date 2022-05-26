@@ -19,7 +19,7 @@ class UserController {
 
         let { error } = req.query
         let data = ""
-        res.render('register-form', { error, data })
+        res.render('register-form-admin', { error, data })
     }
 
     static generateName(req, res) {
@@ -27,7 +27,7 @@ class UserController {
         // res.redirect(`register-form?username1=${username1}`)
         let data = username1
         let { error } = req.query
-        res.render('register-form-admin', { error, data })
+        res.render('register-form', { error, data })
     }
 
     static postRegister(req, res) {
