@@ -1,0 +1,108 @@
+[
+    {
+        "name": "Agung",
+        "age": 22,
+        "skill": "Maintenance",
+        "location": "Jakarta",
+        "phone": "0812888812"
+    },
+    {
+        "name": "Aditya",
+        "age": 32,
+        "skill": "Build",
+        "location": "Bandung",
+        "phone": "0812899812"
+    },
+    {
+        "name": "Budi",
+        "age": 32,
+        "skill": "Maintenance",
+        "location": "Bogor",
+        "phone": "0812888433"
+    },
+    {
+        "name": "Bakti",
+        "age": 39,
+        "skill": "Renovate",
+        "location": "Depok",
+        "phone": "0812885689"
+    },
+    {
+        "name": "Dimas",
+        "age": 35,
+        "skill": "Renovate",
+        "location": "Tanggerang",
+        "phone": "0812889977"
+    },
+    {
+        "name": "David",
+        "age": 21,
+        "skill": "Maintenance",
+        "location": "Jakarta",
+        "phone": "0812888812"
+    },
+    {
+        "name": "Danudara",
+        "age": 32,
+        "skill": "Build",
+        "location": "Bandung",
+        "phone": "0812899812"
+    },
+    {
+        "name": "Eka",
+        "age": 25,
+        "skill": "Maintenance",
+        "location": "Bogor",
+        "phone": "0812888433"
+    },
+    {
+        "name": "Gusti",
+        "age": 29,
+        "skill": "Renovate",
+        "location": "Depok",
+        "phone": "0812885689"
+    },
+    {
+        "name": "Ihsan",
+        "age": 35,
+        "skill": "Renovate",
+        "location": "Tanggerang",
+        "phone": "0812889977"
+    },
+    {
+        "name": "Jamal",
+        "age": 24,
+        "skill": "Maintenance",
+        "location": "Jakarta",
+        "phone": "0812888812"
+    },
+    {
+        "name": "Kaisar",
+        "age": 32,
+        "skill": "Build",
+        "location": "Bandung",
+        "phone": "0812899812"
+    },
+    {
+        "name": "Mulyono",
+        "age": 34,
+        "skill": "Maintenance",
+        "location": "Bogor",
+        "phone": "0812888433"
+    },
+    {
+        "name": "Pangestu",
+        "age": 29,
+        "skill": "Renovate",
+        "location": "Depok",
+        "phone": "0812885689"
+    },
+    {
+        "name": "Perkasa",
+        "age": 35,
+        "skill": "Renovate",
+        "location": "Tanggerang",
+        "phone": "0812889977"
+    }
+    
+]

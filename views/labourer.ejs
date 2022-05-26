@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labourer</title>
+</head>
+<body>
+    <h1>List tukang</h1>
+
+    <% if (role === "Admin") { %>
+        <p>Sort by:
+            <a href="<%= `/profile/${UserId}/labourer?UserId=${UserId}&role=Admin&sort=name` %>">Name</a>
+            <a href="<%= `/profile/${UserId}/labourer?UserId=${UserId}&role=Admin&sort=skill` %>">Skill</a>
+            <a href="<%= `/profile/${UserId}/labourer?UserId=${UserId}&role=Admin&sort=age` %>">Age</a>
+        </p>
+        <br>
+     <% } else { %>
+        <p>Sort by:
+            <a href="<%= `/profile/${UserId}/labourer?UserId=${UserId}&sort=name` %>">Name</a>
+            <a href="<%= `/profile/${UserId}/labourer?UserId=${UserId}&sort=skill` %>">Skill</a>
+            <a href="<%= `/profile/${UserId}/labourer?UserId=${UserId}&sort=age` %>">Age</a>
+        </p>
+        <br>
+    <% } %>
+   
+    <table border="1">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Skill</th>
+          <th>Location</th>
+          <th>Rate / day/th>
+          <th>Phone Number</th>
+          <th>Action</th>
+        </tr>
+
+        <% labourer.forEach((el, i) => { %>
+            <% if (el.UserId === null) { %>
+                <tr>
+                    <td><%= el.name %> </td>
+                    <td><%= el.age %> </td>
+                    <td><%= el.skill %> </td>
+                    <td><%= el.location %> </td>
+                    <td><%= toRupiah(el.rate()) %> </td>
+                    <td><%= el.phone %> </td>
+                    <td>
+                        <% if (role === 'Admin') { %>
+                            <a href=<%=`/profile/${UserId}/labourer/remove?UserId=${UserId}&LabourerId=${el.id}&LabourerName=${el.name}`%> >Remove</a>
+                        <% } else { %>
+                            <a href=<%=`/profile/${UserId}/labourer/book?UserId=${UserId}&LabourerId=${el.id}&LabourerName=${el.name}`%> >Book</a>
+                        <% } %>
+                    </td>
+                </tr>
+            <% } %>
+                
+            
+            
+        <% }) %>
+      </table>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+</head>
+<body>
+    
+    <h1><%= Profile.greetings(user.Profile.name) %> </h1>
+    
+    
+
+    <% if (user.Labourers.length === 0) { %>
+        <% if (user.Profile.name !== "Admin") { %>
+            <p>Sepertinya kamu belum memiliki tukang...</p>
+            <a href="/logout">Log out</a> | <a href=<%- `/profile/${user.id}/labourer?UserId=${user.id}&role=${user.role}`  %> >Cari tukang</a>
+            <% } else if (user.Profile.name === "Admin") { %>
+            <a href="/logout">Log out</a> | <a href=<%- `/profile/${user.id}/labourer?UserId=${user.id}&role=${user.role}`  %> >Review tukang</a>
+             
+        <% } %>
+    <% } %>
+    
+
+    <% if (msg) { %>
+        <p style="color: rgb(10, 58, 149);"><%= msg %> </p>
+    <% } %>
+    
+    <% if (user.Labourers.length !== 0) { %>
+        <a href="/logout">Log out</a> | <a href=<%- `/profile/${user.id}/labourer?UserId=${user.id}&role=${user.role}`  %> >Tambah tukang</a><br><br>
+    <label>Sedang Bekerja bersama anda</label>
+        <table border="1">
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Location</th>
+              <th>Rate / day</th>
+              <th>Phone Number</th>
+              <th>Project</th>
+              <th>Action</th>
+            </tr>
+    
+            <% user.Labourers.forEach((el, i) => { %>
+                <tr>
+                    <td><%= el.name %> </td>
+                    <td><%= el.age %> </td>
+                    <td><%= el.location %> </td>
+                    <td><%= toRupiah(el.rate()) %> </td>
+                    <td><%= el.phone %> </td>
+                    <td><%= `${el.skill} ${user.Profile.name}'s house` %> </td>
+                    <td>
+                        <a href=<%=`/profile/${user.id}/labourer/done?UserId=${user.id}&LabourerId=${el.id}`%> >Done</a>
+                    </td>
+                </tr>
+            <% }) %>
+          </table>
+    <% } %>
+
+</body>
+</html>
