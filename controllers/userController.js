@@ -24,7 +24,6 @@ class UserController {
 
     static generateName(req, res) {
         const username1 = UsernameGenerator.generateUsername();
-        // res.redirect(`register-form?username1=${username1}`)
         let data = username1
         let { error } = req.query
         res.render('register-form', { error, data })
@@ -33,20 +32,9 @@ class UserController {
     static postRegister(req, res) {
 
         let { name, username, password, phone, gender, role } = req.body
-        //{"name":"Andi","username":"Andi12","password":"Password123","phone":"081388238","gender":"Male","role":"User"}
         User.create({ username, password, role })
             .then(user => {
-                return User.findAll(
-                    {
-                        order: [['id', 'DESC']]
-                    },
-                    {
-                        where: {
-                            username: user.username
-                        }
-                    }
-
-                )
+                return User.findAll({ order: [['id', 'DESC']]},{where: { username: user.username }})
             })
             .then(user => {
                 let UserId = +user[0].id
@@ -62,28 +50,13 @@ class UserController {
                 }
                 return res.redirect(`/register?error=${error}`)
             })
-
-        // error = 'Please enter valid Username / Password'
-        //             return res.redirect(`/login?error=${error}`)
     }
 
     static postRegisterAdmin(req, res) {
 
         let { name, username, password, phone, gender, role } = req.body
-        //{"name":"Andi","username":"Andi12","password":"Password123","phone":"081388238","gender":"Male","role":"User"}
         User.create({ username, password, role })
-            .then(user => {
-                return User.findAll(
-                    {
-                        order: [['id', 'DESC']]
-                    },
-                    {
-                        where: {
-                            username: user.username
-                        }
-                    }
-
-                )
+            .then(user => { return User.findAll({ order: [['id', 'DESC']] }, {where: { username: user.username }})
             })
             .then(user => {
                 let UserId = +user[0].id
@@ -99,9 +72,6 @@ class UserController {
                 }
                 return res.redirect(`/register?error=${error}`)
             })
-
-        // error = 'Please enter valid Username / Password'
-        //             return res.redirect(`/login?error=${error}`)
     }
 
 
@@ -111,14 +81,10 @@ class UserController {
     }
 
     static postLogin(req, res) {
-        // {"username":"Andi12","password":"Password123"}
         let { username, password } = req.body
-        // res.send(req.body)
 
         User.findOne({ where: { username } })
             .then(user => {
-
-                // console.log(user)
                 if (user) {
                     const isPasswordTrue = bcrypt.compareSync(password, user.password)
 
@@ -133,12 +99,11 @@ class UserController {
                         let error = 'Please enter valid Username / Password'
                         return res.redirect(`/login?error=${error}`)
                     }
+
                 } else {
                     let error = 'Please enter valid Username / Password'
                     return res.redirect(`/login?error=${error}`)
                 }
-
-
             })
             .catch(err => res.send(err))
     }
@@ -150,9 +115,6 @@ class UserController {
             } else {
                 res.redirect('/login')
             }
-
-
-
         })
     }
 

@@ -8,38 +8,18 @@ const router = express.Router()
 
 router.get('/', UserController.home)
 
-
-// register
 router.get('/register', UserController.registerForm)
-
 router.post('/register', UserController.postRegister)
-
 router.get('/register/admin', UserController.registerFormAdmin)
-
 router.post('/register/admin', UserController.postRegisterAdmin)
 
 router.get('/generateUsername', UserController.generateName)
 
-
-// login
-
 router.get('/login', UserController.loginForm)
-
 router.post('/login', UserController.postLogin)
-
-// login admin
-
-
-
-
-// logout
 
 router.get('/logout', UserController.logout)
 
-
-
-
-// middleware
 router.use(function (req, res, next) {
   
   if (!req.session.userId) {
@@ -49,11 +29,6 @@ router.use(function (req, res, next) {
   }
 })
 
-
-// profile
-
 router.use('/profile', require('./profile'))
-
-
 
 module.exports = router

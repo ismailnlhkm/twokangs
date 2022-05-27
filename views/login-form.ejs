@@ -11,22 +11,14 @@
 
     <% if (error) { %>
     <p style="color: red;"><%= error %></p> 
-     
     <% } %>
-
-    
+ 
     <form action="/login" method="POST">
-
         <label for="username">Username</label><br>
         <input type="text" id="username" name="username" placeholder="ex: Andi12"><br>
-
         <label for="password">Password</label><br>
         <input type="password" id="password" name="password" placeholder="ex: Password123"><br>
-
-
         <input type="submit" value="Submit">
       </form> 
-
-
 </body>
 </html>
